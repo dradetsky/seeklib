@@ -19,6 +19,11 @@ SigStruct *pathSig(char *path) {
     return sig;
 }
 
+// Not 100% sure this is correct. Need to review the paper. After the
+// body of this method, there's another bit* which I thought was just
+// about storing it in their db, but might affect the calculated hash.
+//
+// *the "#else //FAST_POW_GEERT" block
 SigStruct *imgSig(Image *img) {
     // Made static for speed; only used locally
     static Unit cdata1[16384];
