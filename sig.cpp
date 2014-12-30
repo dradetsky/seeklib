@@ -14,7 +14,9 @@ SigStruct *pathSig(char *path) {
     if (exception.severity != UndefinedException) CatchException(&exception);
     DestroyImageInfo(image_info);
     DestroyExceptionInfo(&exception);
-    return imgSig(image);
+    SigStruct *sig = imgSig(image);
+    DestroyImage(image);
+    return sig;
 }
 
 SigStruct *imgSig(Image *img) {
