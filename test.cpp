@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 
+#include "cmp.h"
 #include "haar.h"
 #include "sig.h"
 
@@ -27,6 +28,13 @@ void many(char *dir_name) {
     exit(0);
 }
 
+void cmp2(char *path0, char *path1) {
+    SigStruct *sig0 = pathSig(path0);
+    SigStruct *sig1 = pathSig(path1);
+    double diff = calcDiff(sig0, sig1);
+    printf("%f\n", diff);
+}
+
 void sizeinfo() {
     printf("%d\n", sizeof(SigStruct));
     printf("%d\n", sizeof(char));
@@ -37,8 +45,11 @@ int main(int argc, char** argv) {
     printf("ok\n");
     if (argc < 2) {
         printf("no path");
-        exit(0);
+        sizeinfo();
+    } else if (argc < 3) {
+        many(argv[1]);
+    } else {
+        cmp2(argv[1], argv[2]);
     }
-    many(argv[1]);
     exit(0);
 }
