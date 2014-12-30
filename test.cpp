@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
         printf("no path");
         sizeinfo();
     } else if (argc < 3) {
-        many(argv[1]);
+        cmp_many(argv[1]);
     } else {
         cmp2(argv[1], argv[2]);
     }
