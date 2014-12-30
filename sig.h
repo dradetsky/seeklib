@@ -52,6 +52,10 @@ class DiskSigStruct {
 public:
     // dmr: we don't need ids
     // imageId id;			/* picture id */
+    //
+    // dmr: Idx is an int, probably for speed, but it looks like it
+    // only runs from -16384 through 16383. This could come in handy
+    // for packing it.
     Idx sig1[NUM_COEFS];		/* Y positions with largest magnitude */
     Idx sig2[NUM_COEFS];		/* I positions with largest magnitude */
     Idx sig3[NUM_COEFS];		/* Q positions with largest magnitude */
@@ -100,6 +104,5 @@ void printSig(SigStruct *sig);
 
 // not api
 void printSigSect(Idx *sigSect);
-
 
 #endif // SIG_H

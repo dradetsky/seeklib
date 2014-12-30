@@ -88,6 +88,10 @@ void printSig(SigStruct *sig) {
     printSigSect(sig->sig1);
     printSigSect(sig->sig2);
     printSigSect(sig->sig3);
+}
+
+void printSigObj(SigStruct *sig) {
+    printSig(sig);
     // avg lum
     for (int i=0; i<3; i++) {
         printf("%e ", sig->avgl[i]);
