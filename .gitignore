@@ -1,2 +1,5 @@
 *.cpp.o
+*.o
 test
+testlib
+libseek.so
