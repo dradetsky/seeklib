@@ -29,20 +29,15 @@ void many(char *dir_name) {
 }
 
 void cmp_many(char *dir_name) {
-
-    // SigStruct *sig1 = pathSig(path1);
-    // double diff = calcDiff(sig0, sig1);
-    // printf("%f\n", diff);
-    struct dirent *dir_entry;
-    DIR *dir = opendir(dir_name);
-    if (!dir){
-	printf("unable to open directory\n");
-	exit(1);
-    }
     SigStruct *sig_last = NULL;
     char path[1024];
     path[0] = '\0';
-    while ((dir_entry = readdir(dir)) != 0){
+    struct dirent **dirents;
+    struct dirent *dir_entry;
+    int i, n;
+    n = scandir(dir_name, &dirents, NULL, alphasort);
+    for (i=0; i<n; i++) {
+        dir_entry = dirents[i];
 	if (strcmp(dir_entry->d_name,".") && strcmp(dir_entry->d_name,"..")){
 	    strcat(path, dir_name);
 	    strcat(path, "/");
@@ -54,7 +49,6 @@ void cmp_many(char *dir_name) {
                 delete sig_last;
             }
             sig_last = sig;
-            // printSig(sig);
         }
         path[0]='\0';
     }
