@@ -45,17 +45,7 @@ const float picture_weights[6][3] = {
 // Global typedefs
 typedef long int imageId;
 
-class SigStruct;
-
-/* persisted signature structure */
-class DiskSigStruct {
-public:
-    // dmr: we don't need ids
-    // imageId id;			/* picture id */
-    //
-    // dmr: Idx is an int, probably for speed, but it looks like it
-    // only runs from -16384 through 16383. This could come in handy
-    // for packing it.
+typedef struct _SigStruct {
     Idx sig1[NUM_COEFS];		/* Y positions with largest magnitude */
     Idx sig2[NUM_COEFS];		/* I positions with largest magnitude */
     Idx sig3[NUM_COEFS];		/* Q positions with largest magnitude */
@@ -63,40 +53,7 @@ public:
     /* image properties extracted when opened for the first time */
     int width;			/* in pixels */
     int height;			/* in pixels */
-
-    DiskSigStruct() {}
-    ~DiskSigStruct()
-    {
-
-    }
-};
-
-/* in memory signature structure */
-class SigStruct: public DiskSigStruct {
-public:
-    double score;			/* used when doing queries */
-    // int_hashset keywords;
-
-    SigStruct(DiskSigStruct* ds) {
-        // dmr: no ids
-        // id = ds->id;
-
-        memcpy(sig1,ds->sig1,sizeof(sig1));
-        memcpy(sig2,ds->sig2,sizeof(sig2));
-        memcpy(sig3,ds->sig3,sizeof(sig3));
-        memcpy(avgl,ds->avgl,sizeof(avgl));
-
-        width=ds->width;
-        height=ds->height;
-
-    }
-
-    SigStruct() {}
-    ~SigStruct() {}
-    bool operator< (const SigStruct & right) const {
-        return score < (right.score);
-    }
-};
+} SigStruct;
 
 SigStruct *pathSig(char *path);
 SigStruct *imgSig(Image *img);
