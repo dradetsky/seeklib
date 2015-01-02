@@ -13,7 +13,7 @@ testlib: lib test.o
 	c++ -o $@ $(CFLAGS) test.o -L. -lseek
 
 lib: $(libobjs)
-	gcc -shared -o libseek.so $(libobjs) $(MAGIC_FLAGS)
+	g++ -shared -o libseek.so $(libobjs) $(MAGIC_FLAGS)
 
 test: $(objects)
 	c++ -o $@ $(CFLAGS) $(objects) $(MAGIC_FLAGS)
