@@ -1,4 +1,4 @@
-#include <iostream>
+#include <stdio.h>
 
 #include <magick/api.h>
 
@@ -51,7 +51,7 @@ SigStruct *imgSig(Image *img) {
     DestroyExceptionInfo(&exception);
 
     if (resize_image == (Image *) NULL) {
-        std::cerr << "ERROR: unable to resize image" << std::endl;
+        fprintf(stderr, "ERROR: unable to resize image\n");
         return 0;
     }
 
