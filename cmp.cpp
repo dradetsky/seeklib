@@ -1,6 +1,6 @@
 #include "cmp.h"
 
-unsigned char imgBin[16384];
+unsigned char imgBin[NUM_PIXELS_SQUARED];
 int imgBinInited = 0;
 
 void initImgBin() {
@@ -28,7 +28,7 @@ void initImgBin() {
     /* Except for the 5 by 5 upper-left quadrant: */
     for (i = 0; i < 5; i++)
         for (j = 0; j < 5; j++)
-            imgBin[i * 128 + j] = max(i, j);
+            imgBin[i * NUM_PIXELS + j] = max(i, j);
     // Note: imgBin[0] == 0
 }
 

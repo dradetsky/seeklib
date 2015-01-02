@@ -38,9 +38,9 @@ SigStruct *blobSig(const char *blob, const long length) {
 // *the "#else //FAST_POW_GEERT" block
 SigStruct *imgSig(Image *img) {
     // Made static for speed; only used locally
-    static Unit cdata1[16384];
-    static Unit cdata2[16384];
-    static Unit cdata3[16384];
+    static Unit cdata1[NUM_PIXELS_SQUARED];
+    static Unit cdata2[NUM_PIXELS_SQUARED];
+    static Unit cdata3[NUM_PIXELS_SQUARED];
     int i;
     int width, height;
 
@@ -55,7 +55,7 @@ SigStruct *imgSig(Image *img) {
     width = img->columns;
     height = img->rows;
 
-    resize_image = SampleImage(img, 128, 128, &exception);
+    resize_image = SampleImage(img, NUM_PIXELS, NUM_PIXELS, &exception);
 
     // dmr: prolly shouldn't do this here; creator should destroy
     // DestroyImage(image);
@@ -68,15 +68,22 @@ SigStruct *imgSig(Image *img) {
     }
 
     // store color value for basic channels
-    unsigned char rchan[16384];
-    unsigned char gchan[16384];
-    unsigned char bchan[16384];
+    unsigned char rchan[NUM_PIXELS_SQUARED];
+    unsigned char gchan[NUM_PIXELS_SQUARED];
+    unsigned char bchan[NUM_PIXELS_SQUARED];
 
     GetExceptionInfo(&exception);
 
-    const PixelPacket *pixel_cache = AcquireImagePixels(resize_image, 0, 0, 128, 128, &exception);
+    const PixelPacket *pixel_cache = AcquireImagePixels(
+        resize_image,
+        0,
+        0,
+        NUM_PIXELS,
+        NUM_PIXELS,
+        &exception
+    );
 
-    for (int idx = 0; idx < 16384; idx++) {
+    for (int idx = 0; idx < NUM_PIXELS_SQUARED; idx++) {
         rchan[idx] = pixel_cache->red;
         gchan[idx] = pixel_cache->green;
         bchan[idx] = pixel_cache->blue;
