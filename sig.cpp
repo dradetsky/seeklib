@@ -19,6 +19,18 @@ SigStruct *pathSig(char *path) {
     return sig;
 }
 
+SigStruct *blobSig(const char *blob, const long length) {
+    ExceptionInfo exception;
+    GetExceptionInfo(&exception);
+    ImageInfo *image_info;
+    image_info = CloneImageInfo((ImageInfo *) NULL);
+    Image *image = BlobToImage(image_info, blob, length, &exception);
+    SigStruct *sig = imgSig(image);
+    DestroyImage(image);
+    DestroyImageInfo(image_info);
+    return sig;
+}
+
 // Not 100% sure this is correct. Need to review the paper. After the
 // body of this method, there's another bit* which I thought was just
 // about storing it in their db, but might affect the calculated hash.

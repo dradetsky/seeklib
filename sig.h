@@ -61,6 +61,7 @@ typedef struct _SigStruct {
 
 SigStruct *pathSig(char *path);
 SigStruct *imgSig(Image *img);
+SigStruct *blobSig(const char *blob, const long length);
 
 #ifdef __cplusplus
 }
