@@ -45,6 +45,10 @@ const float picture_weights[6][3] = {
 // Global typedefs
 typedef long int imageId;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct _SigStruct {
     Idx sig1[NUM_COEFS];		/* Y positions with largest magnitude */
     Idx sig2[NUM_COEFS];		/* I positions with largest magnitude */
@@ -57,6 +61,11 @@ typedef struct _SigStruct {
 
 SigStruct *pathSig(char *path);
 SigStruct *imgSig(Image *img);
+
+#ifdef __cplusplus
+}
+#endif
+
 void printSig(SigStruct *sig);
 
 // not api
