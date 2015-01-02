@@ -69,7 +69,6 @@ void sizeinfo() {
 }
 
 int main(int argc, char** argv) {
-    printf("ok\n");
     if (argc < 2) {
         printf("no path");
         sizeinfo();
