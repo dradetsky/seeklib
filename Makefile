@@ -8,7 +8,12 @@ sig.o
 objects=$(progobjs) $(libobjs)
 
 MAGIC_FLAGS=`Magick++-config --cxxflags --cppflags --ldflags --libs`
+# -ffast-math ?
+#CFLAGS=-fwrapv -pthread -fno-strict-aliasing -O2 -fopenmp -fpic -Wattributes -rdynamic -Wl,-E
 CFLAGS=-fwrapv -pthread -fno-strict-aliasing -O2 -fopenmp -fpic
+
+all: testlib test
+
 testlib: lib test.o
 	c++ -o $@ $(CFLAGS) test.o -L. -lseek
 
