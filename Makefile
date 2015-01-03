@@ -6,13 +6,15 @@ haar.o \
 sig.o
 
 objects=$(progobjs) $(libobjs)
-
+DEV_FLAGS=-fwrapv -pthread -fpic -g
+PROD_FLAGS=-fwrapv -pthread -fpic -O2
+CFLAGS=$(PROF_FLAGS) $(DEV_FLAGS)
 MAGIC_FLAGS=`Magick++-config --cxxflags --cppflags --ldflags --libs`
 # -ffast-math ?
 #CFLAGS=-fwrapv -pthread -fno-strict-aliasing -O2 -fopenmp -fpic -Wattributes -rdynamic -Wl,-E
-CFLAGS=-fwrapv -pthread -fno-strict-aliasing -O2 -fopenmp -fpic
+#CFLAGS=-fwrapv -pthread -fno-strict-aliasing -O2 -fopenmp -fpic
 
-all: testlib test
+all: test testlib
 
 testlib: lib test.o
 	c++ -o $@ $(CFLAGS) test.o -L. -lseek
