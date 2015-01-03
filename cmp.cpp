@@ -5,8 +5,6 @@ int imgBinInited = 0;
 
 void initImgBin() {
     imgBinInited = 1;
-    // dmr: wtf is this for?
-    srand((unsigned)time(0));
 
     /* setup initial fixed weights that each coefficient represents */
     int i, j;
