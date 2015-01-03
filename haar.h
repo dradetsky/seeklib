@@ -49,12 +49,12 @@ typedef int Idx;
 
 /* signature structure */
 typedef struct valStruct_{
-  Unit d;			/* [f]abs(a[i]) */
-  int i;			/* index i of a[i] */
-  bool operator< (const valStruct_ &right) const // warning: order is inverse so valqueue is ordered smallest->biggest
-  {
-    return d > right.d;
-  }
+    Unit d;			/* [f]abs(a[i]) */
+    int i;			/* index i of a[i] */
+    // warning: order is inverse so valqueue is ordered smallest->biggest
+    bool operator< (const valStruct_ &right) const {
+        return d > right.d;
+    }
 } valStruct;
 
 typedef std::priority_queue < valStruct > valqueue;
