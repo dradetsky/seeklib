@@ -48,7 +48,7 @@ double calcDiff(SigStruct *siga, SigStruct *sigb) {
         for (int c = 0; c < 3; c++)
             for (int b2 = 0; b2 < NUM_COEFS; b2++)
                 if (coreb[c][b2] == corea[c][b])
-                    diff -= weights[0][imgBin[abs(corea[c][b])]][c];
+                    diff -= picture_weights[imgBin[abs(corea[c][b])]][c];
 
     return diff;
 }
