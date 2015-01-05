@@ -34,8 +34,6 @@ typedef struct _SigStruct {
     Idx sig3[NUM_COEFS];		/* Q positions with largest magnitude */
     double avgl[3];		/* YIQ for position [0,0] */
     /* image properties extracted when opened for the first time */
-    int width;			/* in pixels */
-    int height;			/* in pixels */
 } SigStruct;
 
 
