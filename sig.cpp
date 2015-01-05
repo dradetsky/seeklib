@@ -56,9 +56,6 @@ void printSigObj(SigStruct *sig) {
         printf("%e ", sig->avgl[i]);
     }
     printf("\n");
-    
-    printf("%d\n", sig->width);
-    printf("%d\n", sig->height);
 }
 
 void printSigSect(Idx *sigSect) {
