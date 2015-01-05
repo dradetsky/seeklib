@@ -7,9 +7,8 @@ sig.o
 
 objects=$(progobjs) $(libobjs)
 DEV_FLAGS=-fwrapv -pthread -fpic -g
-PROD_FLAGS=-fwrapv -pthread -fpic -O2
+PROD_FLAGS=-fwrapv -pthread -fpic -O2 -ffast-math
 CFLAGS=$(PROF_FLAGS) $(DEV_FLAGS) -Dcimg_display=0
-# -ffast-math ?
 
 all: test testlib
 
