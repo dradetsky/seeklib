@@ -1,0 +1,24 @@
+with magick
+dmr@lapx:~/code/task/vindex/seek/seeklib$ time ./test ../../index/.imgs/3950538.flv.bmp >/dev/null
+
+real    0m4.405s
+user    0m14.728s
+sys     0m0.325s
+dmr@lapx:~/code/task/vindex/seek/seeklib$ time ./test ../../index/.imgs/3950538.flv.jpg >/dev/null
+
+real    0m3.849s
+user    0m14.420s
+sys     0m0.136s
+
+with cimg
+dmr@lapx:~/code/task/vindex/seek/seeklib$ time ./test ../../index/.imgs/3950538.flv.bmp >/dev/null
+
+real    0m5.505s
+user    0m5.295s
+sys     0m0.168s
+with cimg & -O2
+dmr@lapx:~/code/task/vindex/seek/seeklib$ time ./test ../../index/.imgs/3950538.flv.bmp >/dev/null
+
+real    0m2.561s
+user    0m2.323s
+sys     0m0.168s
