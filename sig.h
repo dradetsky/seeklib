@@ -1,11 +1,6 @@
 #ifndef SIG_H
 #define SIG_H
 
-#include <string.h>
-
-// needed by test.cpp; can fwd declare to avoid?
-#include <magick/api.h>
-
 #include "haar.h"
 
 // Weights for the Haar coefficients.
@@ -25,6 +20,10 @@ const float picture_weights[6][3] = {
 // Global typedefs
 typedef long int imageId;
 
+namespace cimg_library {
+    template<typename T> struct CImg;
+};
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -39,9 +38,13 @@ typedef struct _SigStruct {
     int height;			/* in pixels */
 } SigStruct;
 
+
+
 SigStruct *pathSig(char *path);
-SigStruct *imgSig(Image *img);
-SigStruct *blobSig(const char *blob, const long length);
+SigStruct *imgSig(cimg_library::CImg<unsigned char> *img);
+// TODO: blob -> cimg
+// SigStruct *blobSig(const char *blob, const long length);
+
 
 #ifdef __cplusplus
 }

@@ -1,4 +1,9 @@
+#include <cmath>
+#include <stdlib.h>
+#include <string.h>
+
 #include "cmp.h"
+#include "haar.h"
 
 unsigned char imgBin[NUM_PIXELS_SQUARED];
 int imgBinInited = 0;

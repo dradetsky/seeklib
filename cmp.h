@@ -1,9 +1,6 @@
 #ifndef CMP_H
 #define CMP_H
 
-#include <cmath>
-
-#include "haar.h"
 #include "sig.h"
 
 #ifdef __cplusplus
