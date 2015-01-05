@@ -12,14 +12,30 @@ module LibSeek
     :sig2, [:int, 40],
     :sig3, [:int, 40],
     :avgl, [:double, 3]
-    def inspect
-      data = [
-        self[:sig1].to_a.inspect,
-        self[:sig2].to_a.inspect,
-        self[:sig3].to_a.inspect,
-        self[:avgl].to_a.inspect
+    def get_data
+      [
+        self[:sig1].to_a,
+        self[:sig2].to_a,
+        self[:sig3].to_a,
+        self[:avgl].to_a
       ]
+    end
+    def inspect
+      data = get_data.map {|x| x.inspect}
       "#<Sig: #{data.join ' '}>"
+    end
+    # these methods might not be fast enough, but whatever
+    def marshal_dump
+      Marshal.dump get_data
+    end
+    def marshal_load str
+      array = Marshal.load str
+      fields = [:sig1, :sig2, :sig3, :avgl]
+      fields.zip(array).each do |field, data|
+        data.each_index do |i|
+          self[field][i] = data[i]
+        end
+      end
     end
   end
 
