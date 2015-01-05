@@ -45,4 +45,7 @@ module LibSeek
   def self.path_sig path
     Sig.new pathSig(path)
   end
+  def self.calc_diff a, b
+    calcDiff a, b
+  end
 end
