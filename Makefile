@@ -12,6 +12,13 @@ CFLAGS=$(PROF_FLAGS) $(DEV_FLAGS) -Dcimg_display=0
 
 all: test testlib
 
+install: CFLAGS=$(PROD_FLAGS) -Dcimg_display=0
+install: lib
+	cp libseek.so /usr/local/lib/
+
+uninstall:
+	rm -f /usr/local/lib/libseek.so
+
 testlib: lib test.o
 	c++ -o $@ $(CFLAGS) test.o -L. -lseek
 
