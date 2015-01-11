@@ -23,14 +23,14 @@ uninstall:
 	rm -f /usr/lib/libseek.so  # fuck autoconf
 
 testlib: lib test.o
-	c++ -o $@ $(CFLAGS) test.o -L. -lseek
+	clang++ -o $@ $(CFLAGS) test.o -L. -lseek
 
 lib: $(libobjs)
-	g++ -shared -o libseek.so $(libobjs)
+	clang++ -shared -o libseek.so $(libobjs)
 
 test: $(objects)
-	c++ -o $@ $(CFLAGS) $(objects)
+	clang++ -o $@ $(CFLAGS) $(objects)
 %.o: %.cpp %.h
-	c++ -o $@ -c $< $(CFLAGS)
+	clang++ -o $@ -c $< $(CFLAGS)
 clean:
 	rm -f $(objects) test testlib libseek.so
