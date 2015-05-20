@@ -1,0 +1,15 @@
+seeklib
+=======
+
+C++ library to go with ruby bindings to allow use of imgseek
+fingerprint algorithm outside of imgseek.
+
+Based on code by some dude named Ricardo Niederberger Cabral
+(https://about.me/rncabral). His repo which I extracted the code from
+is here: https://github.com/ricardocabral/iskdaemon.
+
+I wanted to package this as a gem, as an alternative to
+pHash/pHashion, but I don't know how to package a C++ library and ffi
+bindings together (as opposed to C/C++ extensions), and couldn't find
+instructions for doing it. If you know, please tell me or just fork it
+and package it yourself.
