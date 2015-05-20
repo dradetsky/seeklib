@@ -10,6 +10,7 @@ DEV_FLAGS=-fwrapv -pthread -fpic -g
 PROD_FLAGS=-fwrapv -pthread -fpic -O2 -ffast-math
 CFLAGS=$(PROF_FLAGS) $(DEV_FLAGS) -Dcimg_display=0
 LIB_TARGET=/usr/local/lib
+CXX=clang++
 
 all: test testlib
 
@@ -23,14 +24,14 @@ uninstall:
 	rm -f /usr/lib/libseek.so  # fuck autoconf
 
 testlib: lib test.o
-	clang++ -o $@ $(CFLAGS) test.o -L. -lseek
+	$(CXX) -o $@ $(CFLAGS) test.o -L. -lseek
 
 lib: $(libobjs)
-	clang++ -shared -o libseek.so $(libobjs)
+	$(CXX) -shared -o libseek.so $(libobjs)
 
 test: $(objects)
-	clang++ -o $@ $(CFLAGS) $(objects)
+	$(CXX) -o $@ $(CFLAGS) $(objects)
 %.o: %.cpp %.h
-	clang++ -o $@ -c $< $(CFLAGS)
+	$(CXX) -o $@ -c $< $(CFLAGS)
 clean:
 	rm -f $(objects) test testlib libseek.so
